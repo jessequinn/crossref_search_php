@@ -12,8 +12,12 @@
 
 if(!empty($_POST['searchTerm'])) {
 	$searchTerm = str_replace(" ", "+", $_POST['searchTerm']); 
+	
+	// header=true provides extra data such as total records found so that you can include pagination
+	// will add a pagination example in future
 	$url = "http://search.labs.crossref.org/dois?q=".$searchTerm."&header=true";
-			
+	
+	// curl downloads html there are alternative ways this requires curl to be enabled in php.ini		
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
